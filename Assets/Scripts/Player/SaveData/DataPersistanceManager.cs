@@ -6,20 +6,18 @@ using System.Linq;
 public class DataPersistanceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
-
     [SerializeField] private string fileName;
-
     [SerializeField] private bool useEncryption;
 
     private TamaData tamaData;
 
-    private List<IDataPersistance> dataPersistanceObjects;
-
     private FileDataHandler dataHandler;
 
-    public static DataPersistanceManager instance { get; private set; }
-
     public TamaGenerator tamaGenerator;
+
+    private List<IDataPersistance> dataPersistanceObjects;
+
+    public static DataPersistanceManager instance { get; private set; }
 
     private void Awake()
     {
@@ -51,10 +49,12 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.Log("No data was found. Making new game");
             NewGame();
         }
-
-        foreach(IDataPersistance dataPersistanceObj in dataPersistanceObjects)
+        else
         {
-            dataPersistanceObj.LoadData(tamaData);
+            foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
+            {
+                dataPersistanceObj.LoadData(tamaData);
+            }
         }
     }
 

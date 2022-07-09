@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class InteractionButtons : MonoBehaviour
 {
-    [SerializeField] private TamaHunger tamaHunger;
+    [SerializeField] private GameObject thisTama;
+    private TamaHunger tamaHunger;
+    private TamaHealth tamaHealth;
+
+    [SerializeField] private float _feedAmount;
+    [SerializeField] private float _healAmount;
+
 
     void Start()
     {
+        tamaHunger = thisTama.GetComponent<TamaHunger>();
+        tamaHealth = thisTama.GetComponent<TamaHealth>();
     }
 
     public void Feed()
     {
-        tamaHunger.FillVoid(20.0f);
+        tamaHunger.Feed(_feedAmount);
+    }
+
+    public void Heal()
+    {
+        tamaHealth.Heal(_healAmount);
     }
 
 }

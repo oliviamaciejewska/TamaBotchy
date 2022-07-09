@@ -66,15 +66,15 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
         }
     }
 
-    public void FillVoid(float amountFed)
+    public void Feed(float amountFed)
     {
-        if (Hunger <= 80)
+        if (Hunger <= maxHunger - amountFed)
         {
             Hunger = Hunger + amountFed;
         }
         else
         {
-            Hunger = 100;
+            Hunger = maxHunger;
         }
     }
 

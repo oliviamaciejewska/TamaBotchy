@@ -49,14 +49,6 @@ public class TimeManager: MonoBehaviour, IDataPersistance
             LastTimeRecorded = _timeNow;
         }
         currentTime = DateTime.Now;
-        //if (secondsToNextMinute > 0)
-        //{
-        //    secondsToNextMinute --;
-        //}
-        //else
-        //{
-        //    currentTime = currentTime.AddSeconds(Time.deltaTime);
-        //}
 
         timeText.text = currentTime.ToString("HH:mm");
     }

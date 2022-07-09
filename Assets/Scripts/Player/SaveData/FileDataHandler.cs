@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using System.IO;
 
+
+//This script writes and reads to a file. If useEncryption is set to true, the file will also be encrypted using a XOR cipher prior to writing to a file.
 public class FileDataHandler
 {
 

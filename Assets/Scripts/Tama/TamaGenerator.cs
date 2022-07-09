@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Generates new tama with randomized attributes.
 public class TamaGenerator : MonoBehaviour
 {
     public static TamaGenerator instance = null;
@@ -31,6 +32,10 @@ public class TamaGenerator : MonoBehaviour
         int hygIndex = Random.Range(0, tamaStats.hygeine.Length);
         int likeIndex = Random.Range(0, tamaStats.likesDislikes.Length);
         int disIndex = Random.Range(0, tamaStats.likesDislikes.Length);
+        while (disIndex == likeIndex)
+        {
+            disIndex = Random.Range(0, tamaStats.likesDislikes.Length);
+        }
 
         this.tamaAttributes.SetTamaStats(tamaStats.sociability[socIndex], tamaStats.friendliness[friendIndex], tamaStats.hygeine[hygIndex], tamaStats.likesDislikes[likeIndex], tamaStats.likesDislikes[disIndex]);
     }
