@@ -211,12 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tamaStats: {fileID: 11400000, guid: 8f338de763c814c408bd61f1e73e9cf3, type: 2}
-  tama:
-    mySociability: 
-    myFriendliness: 
-    myHygeine: 
-    myLikes: 
-    myDislikes: 
+  tamaAttributes: {fileID: 737972014}
   amountOfStats: 5
 --- !u!1 &212286345
 GameObject:
@@ -495,7 +490,7 @@ GameObject:
   - component: {fileID: 737972010}
   - component: {fileID: 737972012}
   - component: {fileID: 737972011}
-  - component: {fileID: 737972013}
+  - component: {fileID: 737972014}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -638,7 +633,7 @@ MonoBehaviour:
   _hunger: 0
   hungerRate: 1
   _healthDamageByHunger: 20
---- !u!114 &737972013
+--- !u!114 &737972014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -647,9 +642,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 737972006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19b01cfb9451ce4290c46a4490fa468, type: 3}
+  m_Script: {fileID: 11500000, guid: 357062dae6f3b8b4aab7fcdf527fbc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySociability: 
+  myFriendliness: 
+  myHygeine: 
+  myLikes: 
+  myDislikes: 
 --- !u!1 &779491139
 GameObject:
   m_ObjectHideFlags: 0

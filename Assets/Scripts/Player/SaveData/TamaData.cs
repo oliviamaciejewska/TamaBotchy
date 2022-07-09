@@ -11,7 +11,12 @@ public class TamaData
     public float hunger;
     public float lastTime;
 
-    public Tama tama;
+    public string mySociability;
+    public string myFriendliness;
+    public string myHygeine;
+    public string myLikes;
+    public string myDislikes;
+
 
     public TamaData ()
     {
@@ -19,7 +24,11 @@ public class TamaData
         this.hunger = 100.0f;
         this.lastTime = 0.0f;
 
-        tama = new Tama();
+        this.mySociability = "";
+        this.myFriendliness = "";
+        this.myHygeine = "";
+        this.myLikes = "";
+        this.myDislikes = "";
     }
 
 }

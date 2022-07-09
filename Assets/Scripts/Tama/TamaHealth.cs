@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TamaHealth : MonoBehaviour, IDataPersistance
 {
-    [SerializeField] private float maxHealth = 100.0f;
+    [SerializeField] private float maxHealth = 50;
     [SerializeField] private float _health;
     
     [SerializeField] private float _healthDegenRate = 5.0f; //Rate at which health degenerates in seconds TODO: balance rate
