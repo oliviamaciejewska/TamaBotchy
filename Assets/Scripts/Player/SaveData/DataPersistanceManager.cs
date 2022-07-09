@@ -19,6 +19,8 @@ public class DataPersistanceManager : MonoBehaviour
 
     public static DataPersistanceManager instance { get; private set; }
 
+    public TamaGenerator tamaGenerator;
+
     private void Awake()
     {
         if (instance != null)
@@ -42,7 +44,6 @@ public class DataPersistanceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //TODO
         this.tamaData = dataHandler.Load();
 
         if(this.tamaData == null)
@@ -61,7 +62,7 @@ public class DataPersistanceManager : MonoBehaviour
     {
         foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
         {
-            dataPersistanceObj.SaveData(ref tamaData);
+            dataPersistanceObj.SaveData(tamaData);
         }
 
         dataHandler.Save(tamaData);
@@ -74,7 +75,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
-        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistance>();
         return new List<IDataPersistance>(dataPersistanceObjects);
     }
 }

@@ -29,7 +29,7 @@ public class TimeManager: MonoBehaviour, IDataPersistance
         this.LastTimeRecorded = data.lastTime;
     }
 
-    public void SaveData(ref TamaData data)
+    public void SaveData(TamaData data)
     {
         data.lastTime = this.LastTimeRecorded;
     }

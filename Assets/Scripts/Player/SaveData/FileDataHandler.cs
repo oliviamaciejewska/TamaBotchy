@@ -13,6 +13,7 @@ public class FileDataHandler
     private bool useEncryption = false;
     private readonly string encryptionCodeWord = "pokie";
 
+
     public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
@@ -82,6 +83,7 @@ public class FileDataHandler
         }
     }
 
+    //Encrypt and decrypt using XOR
     private string EncryptDecrypt(string data)
     {
         string modifiedData = "";
@@ -91,34 +93,4 @@ public class FileDataHandler
         }
         return modifiedData;
     }
-    //public static void SaveTama(TamaData tama)
-    //{
-    //    BinaryFormatter formatter = new BinaryFormatter();
-    //    string path = Application.persistentDataPath + "/tama.data";
-    //    FileStream stream = new FileStream(path, FileMode.Create);
-
-    //    TamaData tamaData = new TamaData(tamaData);
-
-    //    formatter.Serialize(stream, tamaData);
-    //    stream.Close();
-    //}
-
-    //public static TamaData LoadTama()
-    //{
-    //    string path = Application.persistentDataPath + "/tama.data";
-    //    if (File.Exists(path))
-    //    {
-    //        BinaryFormatter formatter = new BinaryFormatter();
-    //        FileStream stream = new FileStream(path, FileMode.Create);
-    //        TamaData tamaData = formatter.Deserialize(stream) as TamaData;
-    //        stream.Close();
-
-    //        return tamaData;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("Save file not found in " + path);
-    //        return null;
-    //    }
-    //}
 }

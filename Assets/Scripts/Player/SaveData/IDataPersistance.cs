@@ -6,5 +6,5 @@ public interface IDataPersistance
 {
     void LoadData(TamaData data);
 
-    void SaveData(ref TamaData data);
+    void SaveData(TamaData data);
 }
