@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[Serializable]
 public class TimeManager: MonoBehaviour, IDataPersistance
 {
     public TextMeshProUGUI timeText;
@@ -43,7 +44,7 @@ public class TimeManager: MonoBehaviour, IDataPersistance
 
     public static int GetCurrentTickSeconds()
     {
-        int currentTickSeconds = ((int)DateTime.Now.Ticks)/10000000;
+        int currentTickSeconds = ((int)DateTime.UtcNow.Ticks)/10000000;
 
         return currentTickSeconds;
     }
