@@ -9,6 +9,10 @@ public class DataPersistanceManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
 
+    [Header("Auto-save Config")]
+    [SerializeField] private float autoSaveTimeSeconds = 60.0f;
+    private Coroutine autoSaveCoroutine;
+
     private TamaData tamaData;
 
     private FileDataHandler dataHandler;
@@ -56,6 +60,12 @@ public class DataPersistanceManager : MonoBehaviour
                 dataPersistanceObj.LoadData(tamaData);
             }
         }
+
+        if (autoSaveCoroutine != null)
+        {
+            StopCoroutine(autoSaveCoroutine);
+        }
+        autoSaveCoroutine = StartCoroutine(AutoSave());
     }
 
     public void SaveGame()
@@ -73,6 +83,15 @@ public class DataPersistanceManager : MonoBehaviour
         SaveGame();
     }
 
+    private IEnumerator AutoSave()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(autoSaveTimeSeconds);
+            SaveGame();
+            Debug.Log("Auto Saved");
+        }
+    }
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
         IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistance>();

@@ -10,7 +10,10 @@ public class TamaGenerator : MonoBehaviour
     [Header("Data")]
     [SerializeField] private TamaStats tamaStats;
 
-    [SerializeField] private TamaAttributes tamaAttributes;
+    [SerializeField] private GameObject thisTama;
+    private TamaAttributes tamaAttributes;
+    private TamaAge tamaAge;
+    
     public int amountOfStats = 5;
     public static TamaGenerator Instance { get; private set; }
 
@@ -21,6 +24,9 @@ public class TamaGenerator : MonoBehaviour
             Debug.LogError("Found more than one TamaGenerator in scene");
         }
         instance = this;
+
+        tamaAttributes = thisTama.GetComponent<TamaAttributes>();
+        tamaAge = thisTama.GetComponent<TamaAge>();
 
         MakeTama();
     }
@@ -38,6 +44,8 @@ public class TamaGenerator : MonoBehaviour
         }
 
         this.tamaAttributes.SetTamaStats(tamaStats.sociability[socIndex], tamaStats.friendliness[friendIndex], tamaStats.hygeine[hygIndex], tamaStats.likesDislikes[likeIndex], tamaStats.likesDislikes[disIndex]);
+
+        this.tamaAge.TimeTamaBorn = ((int)System.DateTime.Now.Ticks)/10000000;
     }
 
 }

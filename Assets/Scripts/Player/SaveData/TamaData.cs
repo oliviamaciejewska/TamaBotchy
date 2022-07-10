@@ -1,15 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 
 //Class holding data to be saved.
 public class TamaData
 {
     public float health;
     public float hunger;
-    public float lastTime;
 
     public string mySociability;
     public string myFriendliness;
@@ -17,9 +17,13 @@ public class TamaData
     public string myLikes;
     public string myDislikes;
 
+    public int lastTime;
+
+    public int timeTamaBorn;
 
     public TamaData ()
     {
+        //This should only be initialized once for the save file
     }
 
 }

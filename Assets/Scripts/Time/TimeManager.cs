@@ -10,28 +10,21 @@ public class TimeManager: MonoBehaviour, IDataPersistance
     private DateTime currentTime;
     private DateTime startTime;
 
-    [SerializeField] private float _timeNow;
-    [SerializeField] private float timeRecordInterval = 30.0f;
-    [SerializeField] private float _lastTimeRecorded;
+    //Records the time on saving, which will return the last time we have recorded for comparison to next time we log on
+    [SerializeField] private int _lastTimeRecorded;
 
-    public float LastTimeRecorded { get => _lastTimeRecorded; set => _lastTimeRecorded = value; }
+    //Records the time in ticks/10000000 when we log on, allowing us to compare the time between now and when we last saved
+    [SerializeField] private int tickSecondsAtLogin;
+
+    [SerializeField] private int secondsSinceLastLogin;
+
+    public int LastTimeRecorded { get => _lastTimeRecorded; set => _lastTimeRecorded = value; }
 
     // Start is called before the first frame update
     void Start()
     {
         currentTime = DateTime.Now;
         startTime = currentTime;
-        LastTimeRecorded = Time.realtimeSinceStartup;
-    }
-
-    public void LoadData(TamaData data)
-    {
-        this.LastTimeRecorded = data.lastTime;
-    }
-
-    public void SaveData(TamaData data)
-    {
-        data.lastTime = this.LastTimeRecorded;
     }
 
     // Update is called once per frame
@@ -40,16 +33,39 @@ public class TimeManager: MonoBehaviour, IDataPersistance
         UpdateTime();        
     }
 
-    //Utilizing DateTime class during update for now (can't find a reason why I shouldn't especially for this scope.)
     private void UpdateTime()
     {
-        _timeNow = Time.realtimeSinceStartup;
-        if (_timeNow > LastTimeRecorded + timeRecordInterval)
-        {
-            LastTimeRecorded = _timeNow;
-        }
+        //Utilizing DateTime class during update for now (can't find a reason why I shouldn't especially for this scope.)
         currentTime = DateTime.Now;
 
         timeText.text = currentTime.ToString("HH:mm");
     }
+
+    public static int GetCurrentTickSeconds()
+    {
+        int currentTickSeconds = ((int)DateTime.Now.Ticks)/10000000;
+
+        return currentTickSeconds;
+    }
+
+    public void GetTimeSinceLastLogin()
+    {
+        secondsSinceLastLogin = (tickSecondsAtLogin - _lastTimeRecorded);
+    }
+
+
+    public void LoadData(TamaData data)
+    {
+        this.LastTimeRecorded = data.lastTime;
+
+        tickSecondsAtLogin = GetCurrentTickSeconds();
+
+        GetTimeSinceLastLogin();
+    }
+
+    public void SaveData(TamaData data)
+    {
+        data.lastTime = GetCurrentTickSeconds();
+    }
+
 }
