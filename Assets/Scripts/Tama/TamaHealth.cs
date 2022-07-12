@@ -9,6 +9,8 @@ public class TamaHealth : MonoBehaviour, IDataPersistance
     
     [SerializeField] private float _healthDegenRate = 5.0f; //Rate at which health degenerates in seconds TODO: balance rate
 
+    [SerializeField] private TimeManager timeManager;
+
     public float Health { get => _health; set => _health = value; }
 
     // Start is called before the first frame update
@@ -20,22 +22,11 @@ public class TamaHealth : MonoBehaviour, IDataPersistance
 
     void Update()
     {
-        if (Health == 0)
+        if (Health <= 0)
         {
             Die();
         }
     }
-
-    public void LoadData(TamaData data)
-    {
-        this.Health = data.health;
-    }
-
-    public void SaveData(TamaData data)
-    {
-        data.health = this.Health;
-    }
-
 
     private void MakeUnhealthy()
     {
@@ -44,18 +35,25 @@ public class TamaHealth : MonoBehaviour, IDataPersistance
 
     public void Heal(float healAmount)
     {
-        if (Health <= maxHealth - healAmount)
-        {
-            Health += healAmount;
-        }
-        else
-        {
-            Health = maxHealth;
-        }
+        Health += healAmount; 
+        Health = Mathf.Clamp(Health, 0, maxHealth);
     }
 
     private void Die()
     {
         CancelInvoke("MakeUnhealthy");
+    }
+
+    //Saving interface functions
+    public void LoadData(TamaData data)
+    {
+        this.Health = data.health - ((int)(TimeManager.SecondsSinceLastLogin) * (_healthDegenRate));
+
+        Health = Mathf.Clamp(Health, 0, maxHealth);
+    }
+
+    public void SaveData(TamaData data)
+    {
+        data.health = this.Health;
     }
 }

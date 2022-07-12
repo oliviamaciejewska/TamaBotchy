@@ -12,15 +12,26 @@ public class TimeManager: MonoBehaviour, IDataPersistance
     private DateTime startTime;
 
     //Records the time on saving, which will return the last time we have recorded for comparison to next time we log on
-    [SerializeField] private int _lastTimeRecorded;
+    [SerializeField] private DateTime _lastTimeRecorded;
 
     //Records the time in ticks/10000000 when we log on, allowing us to compare the time between now and when we last saved
-    [SerializeField] private int tickSecondsAtLogin;
+    [SerializeField] private DateTime timeNow;
 
-    [SerializeField] private int secondsSinceLastLogin;
+    [SerializeField] private static double secondsSinceLastLogin;
 
-    public int LastTimeRecorded { get => _lastTimeRecorded; set => _lastTimeRecorded = value; }
+    public DateTime LastTimeRecorded { get => _lastTimeRecorded; set => _lastTimeRecorded = value; }
+    public static double SecondsSinceLastLogin { get => secondsSinceLastLogin; set => secondsSinceLastLogin = value; }
 
+    public static TimeManager instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one DPManager in scene");
+        }
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -42,31 +53,29 @@ public class TimeManager: MonoBehaviour, IDataPersistance
         timeText.text = currentTime.ToString("HH:mm");
     }
 
-    public static int GetCurrentTickSeconds()
+    public static DateTime GetCurrentTickSeconds()
     {
-        int currentTickSeconds = ((int)DateTime.UtcNow.Ticks)/10000000;
-
-        return currentTickSeconds;
+        return DateTime.UtcNow;
     }
 
     public void GetTimeSinceLastLogin()
     {
-        secondsSinceLastLogin = (tickSecondsAtLogin - _lastTimeRecorded);
+        secondsSinceLastLogin = timeNow.Subtract(LastTimeRecorded).TotalSeconds;
     }
 
 
     public void LoadData(TamaData data)
     {
-        this.LastTimeRecorded = data.lastTime;
+        this.LastTimeRecorded = DateTime.Parse(data.lastTime);
 
-        tickSecondsAtLogin = GetCurrentTickSeconds();
+        timeNow = GetCurrentTickSeconds();
 
         GetTimeSinceLastLogin();
     }
 
     public void SaveData(TamaData data)
     {
-        data.lastTime = GetCurrentTickSeconds();
+        data.lastTime = DateTime.UtcNow.ToString();
     }
 
 }

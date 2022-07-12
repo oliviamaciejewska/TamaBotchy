@@ -17,9 +17,9 @@ public class TamaData
     public string myLikes;
     public string myDislikes;
 
-    public int lastTime;
+    public string lastTime;
 
-    public int timeTamaBorn;
+    public string timeTamaBorn;
 
     public TamaData ()
     {

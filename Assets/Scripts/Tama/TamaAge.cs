@@ -6,9 +6,9 @@ using System;
 [Serializable]
 public class TamaAge : MonoBehaviour, IDataPersistance
 {
-    private int timeTamaBorn;
-    public int TimeTamaBorn { get => timeTamaBorn; set => timeTamaBorn = value; }
-    public int currentAge;
+    private DateTime timeTamaBorn;
+    public DateTime TimeTamaBorn { get => timeTamaBorn; set => timeTamaBorn = value; }
+    public double currentAge;
 
     public const int TicksPerSecond = 10000000;
 
@@ -20,21 +20,21 @@ public class TamaAge : MonoBehaviour, IDataPersistance
 
     private void CalculateTicksFromBirth()
     {
-        int currentTime = TimeManager.GetCurrentTickSeconds();
+        DateTime currentTime = TimeManager.GetCurrentTickSeconds();
 
-        currentAge = currentTime - timeTamaBorn;
+        currentAge = currentTime.Subtract(timeTamaBorn).TotalSeconds;
     }
 
 
     //Interface method
     public void LoadData(TamaData data)
     {
-        this.TimeTamaBorn = data.timeTamaBorn;
+        this.TimeTamaBorn = DateTime.Parse(data.timeTamaBorn);
     }
 
     //Interface method
     public void SaveData(TamaData data)
     {
-        data.timeTamaBorn = this.TimeTamaBorn;
+        data.timeTamaBorn = timeTamaBorn.ToString();
     }
 }

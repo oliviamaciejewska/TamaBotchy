@@ -46,7 +46,7 @@ public class TamaGenerator : MonoBehaviour
 
         this.tamaAttributes.SetTamaStats(tamaStats.sociability[socIndex], tamaStats.friendliness[friendIndex], tamaStats.hygeine[hygIndex], tamaStats.likesDislikes[likeIndex], tamaStats.likesDislikes[disIndex]);
 
-        this.tamaAge.TimeTamaBorn = ((int)System.DateTime.UtcNow.Ticks)/10000000;
+        this.tamaAge.TimeTamaBorn = System.DateTime.UtcNow;
     }
 
 }

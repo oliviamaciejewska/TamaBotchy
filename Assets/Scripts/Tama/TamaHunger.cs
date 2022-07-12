@@ -6,8 +6,10 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private float maxHunger = 100.0f;
     [SerializeField] private float _hunger;
-    [SerializeField] private float hungerRate = 1.0f; //Rate at which hunger decreases in seconds TODO: balance rate
+    [SerializeField] private float _hungerDegenRate = 1.0f; //Rate at which hunger decreases in seconds TODO: balance rate
     [SerializeField] private float _healthDamageByHunger = 20.0f;
+
+    [SerializeField] private TimeManager timeManager;
 
     private TamaHealth tamaHealth;
 
@@ -18,20 +20,8 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
     void Start()
     {
         Hunger = maxHunger;
-        InvokeRepeating("MakeHungry", 1.0f, hungerRate);
+        InvokeRepeating("MakeHungry", 1.0f, _hungerDegenRate);
         tamaHealth = GetComponent<TamaHealth>();
-    }
-
-    //Interface method
-    public void LoadData(TamaData data)
-    {
-        this.Hunger = data.hunger;
-    }
-
-    //Interface method
-    public void SaveData(TamaData data)
-    {
-        data.hunger = this.Hunger;
     }
 
     void Update()
@@ -68,18 +58,25 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
 
     public void Feed(float amountFed)
     {
-        if (Hunger <= maxHunger - amountFed)
-        {
-            Hunger = Hunger + amountFed;
-        }
-        else
-        {
-            Hunger = maxHunger;
-        }
+        Hunger = Hunger + amountFed;
+        Hunger = Mathf.Clamp(Hunger, 0, maxHunger);
     }
 
     private void Die()
     {
         CancelInvoke("MakeHungry");
+    }    
+    
+    //Saving interface functions
+    public void LoadData(TamaData data)
+    {
+        this.Hunger = data.hunger - ((int)(TimeManager.SecondsSinceLastLogin) * (_hungerDegenRate));
+
+        Hunger = Mathf.Clamp(Hunger, 0, maxHunger);
+    }
+
+    public void SaveData(TamaData data)
+    {
+        data.hunger = this.Hunger;
     }
 }

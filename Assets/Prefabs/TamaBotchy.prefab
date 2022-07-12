@@ -141,8 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHunger: 100
   _hunger: 0
-  hungerRate: 1
+  _hungerDegenRate: 1
   _healthDamageByHunger: 20
+  timeManager: {fileID: 0}
 --- !u!114 &7175150427263818380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   maxHealth: 100
   _health: 0
   _healthDegenRate: 5
+  timeManager: {fileID: 0}
 --- !u!114 &7175150427263818377
 MonoBehaviour:
   m_ObjectHideFlags: 0
