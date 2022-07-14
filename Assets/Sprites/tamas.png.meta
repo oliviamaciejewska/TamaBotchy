@@ -147,7 +147,7 @@ TextureImporter:
         width: 201
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -541,6 +541,69 @@ TextureImporter:
         boneIndex[1]: 2
         boneIndex[2]: 1
         boneIndex[3]: 3
+    - serializedVersion: 2
+      name: tamas_1
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 6
+        width: 117
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94e9441d838dad7a0800000000000000
+      internalID: -6351526585911959991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tamas_2
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 7
+        width: 121
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b588a504a93bcd0800000000000000
+      internalID: -2543519763346728132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tamas_3
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 7
+        width: 143
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd563734522bb41a0800000000000000
+      internalID: -6824164937234684453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

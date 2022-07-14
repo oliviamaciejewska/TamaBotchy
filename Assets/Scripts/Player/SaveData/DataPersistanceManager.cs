@@ -19,6 +19,10 @@ public class DataPersistanceManager : MonoBehaviour
 
     public TamaGenerator tamaGenerator;
 
+    [Header("Game Objects")]
+    [SerializeField] private GameObject eggPrefab;
+    [SerializeField] private GameObject tamaPrefab;
+
     private List<IDataPersistance> dataPersistanceObjects;
 
     public static DataPersistanceManager instance { get; private set; }
@@ -42,6 +46,8 @@ public class DataPersistanceManager : MonoBehaviour
     public void NewGame()
     {
         this.tamaData = new TamaData();
+        GameObject egg = (GameObject)Instantiate(eggPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
     }
 
     public void LoadGame()
@@ -55,6 +61,8 @@ public class DataPersistanceManager : MonoBehaviour
         }
         else
         {
+            GameObject tama = Instantiate(tamaPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            this.dataPersistanceObjects = FindAllDataPersistanceObjects();
             foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
             {
                 dataPersistanceObj.LoadData(tamaData);
@@ -87,6 +95,8 @@ public class DataPersistanceManager : MonoBehaviour
     {
         while (true)
         {
+            //TODO: find a better way to make this save system work after instantiating my tama at runtime. Don't really wanna be doing this in a coroutine...
+            this.dataPersistanceObjects = FindAllDataPersistanceObjects();
             yield return new WaitForSeconds(autoSaveTimeSeconds);
             SaveGame();
             Debug.Log("Auto Saved");
@@ -94,7 +104,7 @@ public class DataPersistanceManager : MonoBehaviour
     }
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
-        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistance>();
+        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
         return new List<IDataPersistance>(dataPersistanceObjects);
     }
 }

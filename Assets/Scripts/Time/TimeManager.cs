@@ -8,18 +8,16 @@ using TMPro;
 public class TimeManager: MonoBehaviour, IDataPersistance
 {
     public TextMeshProUGUI timeText;
+    //Current local system time for display
     private DateTime currentTime;
-    private DateTime startTime;
 
     //Records the time on saving, which will return the last time we have recorded for comparison to next time we log on
-    [SerializeField] private DateTime _lastTimeRecorded;
-
-    //Records the time in ticks/10000000 when we log on, allowing us to compare the time between now and when we last saved
+    [SerializeField] private DateTime lastTimeRecorded;
     [SerializeField] private DateTime timeNow;
 
     [SerializeField] private static double secondsSinceLastLogin;
 
-    public DateTime LastTimeRecorded { get => _lastTimeRecorded; set => _lastTimeRecorded = value; }
+    public DateTime LastTimeRecorded { get => lastTimeRecorded; set => lastTimeRecorded = value; }
     public static double SecondsSinceLastLogin { get => secondsSinceLastLogin; set => secondsSinceLastLogin = value; }
 
     public static TimeManager instance { get; private set; }
@@ -36,7 +34,6 @@ public class TimeManager: MonoBehaviour, IDataPersistance
     void Start()
     {
         currentTime = DateTime.Now;
-        startTime = currentTime;
     }
 
     // Update is called once per frame
@@ -53,12 +50,12 @@ public class TimeManager: MonoBehaviour, IDataPersistance
         timeText.text = currentTime.ToString("HH:mm");
     }
 
-    public static DateTime GetCurrentTickSeconds()
+    public static DateTime GetCurrentTime()
     {
         return DateTime.UtcNow;
     }
 
-    public void GetTimeSinceLastLogin()
+    public void GetSecondsSinceLastLogin()
     {
         secondsSinceLastLogin = timeNow.Subtract(LastTimeRecorded).TotalSeconds;
     }
@@ -68,9 +65,9 @@ public class TimeManager: MonoBehaviour, IDataPersistance
     {
         this.LastTimeRecorded = DateTime.Parse(data.lastTime);
 
-        timeNow = GetCurrentTickSeconds();
+        timeNow = GetCurrentTime();
 
-        GetTimeSinceLastLogin();
+        GetSecondsSinceLastLogin();
     }
 
     public void SaveData(TamaData data)
