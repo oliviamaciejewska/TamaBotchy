@@ -34,20 +34,22 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.LogError("Found more than one DPManager in scene");
         }
         instance = this;
-    }
 
-    private void Start()
-    {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistanceObjects = FindAllDataPersistanceObjects();
         LoadGame();
     }
 
+    //private void Start()
+    //{
+    //    this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+    //    this.dataPersistanceObjects = FindAllDataPersistanceObjects();
+    //    LoadGame();
+    //}
+
     public void NewGame()
     {
         this.tamaData = new TamaData();
-        GameObject egg = (GameObject)Instantiate(eggPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-
     }
 
     public void LoadGame()
@@ -61,8 +63,6 @@ public class DataPersistanceManager : MonoBehaviour
         }
         else
         {
-            GameObject tama = Instantiate(tamaPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            this.dataPersistanceObjects = FindAllDataPersistanceObjects();
             foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
             {
                 dataPersistanceObj.LoadData(tamaData);
@@ -95,8 +95,6 @@ public class DataPersistanceManager : MonoBehaviour
     {
         while (true)
         {
-            //TODO: find a better way to make this save system work after instantiating my tama at runtime. Don't really wanna be doing this in a coroutine...
-            this.dataPersistanceObjects = FindAllDataPersistanceObjects();
             yield return new WaitForSeconds(autoSaveTimeSeconds);
             SaveGame();
             Debug.Log("Auto Saved");

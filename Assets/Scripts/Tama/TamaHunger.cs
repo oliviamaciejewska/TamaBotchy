@@ -15,8 +15,6 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
 
     public float Hunger { get => _hunger; set => _hunger = value; }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         Hunger = maxHunger;

@@ -30,10 +30,10 @@ public class TamaGenerator : MonoBehaviour
         //MakeTama();
     }
 
-    public void MakeTama(GameObject thisTama)
+    public void MakeTama()
     {
-        tamaAttributes = thisTama.GetComponent<TamaAttributes>();
-        tamaAge = thisTama.GetComponent<TamaAge>();
+        tamaAttributes = GetComponent<TamaAttributes>();
+        tamaAge = GetComponent<TamaAge>();
         int socIndex = Random.Range(0, tamaStats.sociability.Length);
         int friendIndex = Random.Range(0, tamaStats.friendliness.Length);
         int hygIndex = Random.Range(0, tamaStats.hygeine.Length);

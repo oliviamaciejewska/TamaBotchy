@@ -1213,6 +1213,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101016970}
   m_CullTransparentMesh: 1
+--- !u!1001 &1102387943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5008752396540346451, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: myLikes
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346451, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: myHygeine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346451, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: myDislikes
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346451, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: mySociability
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346451, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: myFriendliness
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.323
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.141
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346453, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008752396540346459, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+      propertyPath: m_Name
+      value: TamaBotchy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
 --- !u!1 &1104414913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1355,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!1 &1220309984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5008752396540346459, guid: d82b7bdd7f17b8646a4b0011ffebed91, type: 3}
+  m_PrefabInstance: {fileID: 1102387943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1220309985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220309984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91994c1c7d074e647972674c380a13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tamaStats: {fileID: 11400000, guid: 8f338de763c814c408bd61f1e73e9cf3, type: 2}
+  amountOfStats: 5
 --- !u!1 &1220513062
 GameObject:
   m_ObjectHideFlags: 0

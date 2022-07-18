@@ -23,11 +23,11 @@ public class TamaAge : MonoBehaviour, IDataPersistance
         currentAgeSeconds = currentTime.Subtract(dateTimeTamaBorn).TotalSeconds;
     }
 
-
     //Interface method
     public void LoadData(TamaData data)
     {
         this.dateTimeTamaBorn = DateTime.Parse(data.timeTamaBorn);
+        CalculateTicksFromBirth();
     }
 
     //Interface method
