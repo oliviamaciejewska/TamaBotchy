@@ -14,6 +14,9 @@ public class TamaGenerator : MonoBehaviour
     //[SerializeField] private GameObject thisTama;
     private TamaAttributes tamaAttributes;
     private TamaAge tamaAge;
+    public int tamaSpriteIndex;
+
+    private TamaStateManager tamaStateMachine;
     
     public int amountOfStats = 5;
     public static TamaGenerator Instance { get; private set; }
@@ -33,6 +36,7 @@ public class TamaGenerator : MonoBehaviour
     public void MakeTama()
     {
         tamaAttributes = GetComponent<TamaAttributes>();
+        tamaStateMachine = GetComponent<TamaStateManager>();
         tamaAge = GetComponent<TamaAge>();
         int socIndex = Random.Range(0, tamaStats.sociability.Length);
         int friendIndex = Random.Range(0, tamaStats.friendliness.Length);
@@ -47,6 +51,10 @@ public class TamaGenerator : MonoBehaviour
         this.tamaAttributes.SetTamaStats(tamaStats.sociability[socIndex], tamaStats.friendliness[friendIndex], tamaStats.hygeine[hygIndex], tamaStats.likesDislikes[likeIndex], tamaStats.likesDislikes[disIndex]);
 
         this.tamaAge.DateTimeTamaBorn = System.DateTime.UtcNow;
+
+        this.tamaSpriteIndex = Random.Range(1, 13);
+
+        tamaStateMachine.tamaSpriteIndex = this.tamaSpriteIndex;
     }
 
 }

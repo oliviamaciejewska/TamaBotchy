@@ -16,6 +16,11 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
     private SpriteRenderer spriteRenderer;
     public TamaGenerator tamaGenerator;
     private TamaAge tamaAge;
+    public Rigidbody2D rb;
+    public Animator animator;
+    public ParticleSystem eggHatch;
+
+    public int tamaSpriteIndex;
 
     void Awake()
     {
@@ -28,6 +33,13 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
         spriteRenderer = GetComponent<SpriteRenderer>();
         tamaGenerator = GetComponent<TamaGenerator>();
         tamaAge = GetComponent<TamaAge>();
+
+        rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
+
+        eggHatch = GetComponentInChildren<ParticleSystem>();
+
         currentState = GetInitialState();
 
         currentState.Enter();
@@ -55,6 +67,14 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
         }
     }
 
+    void LateUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.UpdatePhysics();
+        }
+    }
+
     public void ChangeState(TamaBaseState newState)
     {
         currentState.Exit();
@@ -71,12 +91,14 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
     public void LoadData(TamaData data)
     {
         this.currentStateName = data.currentState;
+        this.tamaSpriteIndex = data.tamaSprite;
     }
 
     //Interface method
     public void SaveData(TamaData data)
     {
         data.currentState = currentState.ToString();
+        data.tamaSprite = this.tamaSpriteIndex;
     }
 
     private void OnGUI()

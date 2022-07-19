@@ -10,6 +10,7 @@ public class EggState : TamaBaseState
 
     public override void Enter()
     {
+        stateMachine.animator.Play("egg");
         stateMachine.ChangeSprite(0);
         //StartCoroutine("Hatch");
     }
@@ -32,6 +33,7 @@ public class EggState : TamaBaseState
 
     public override void Exit()
     {
+        stateMachine.eggHatch.Play();
         stateMachine.tamaGenerator.MakeTama();
     }
 

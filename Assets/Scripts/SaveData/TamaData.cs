@@ -23,6 +23,8 @@ public class TamaData
 
     public string currentState;
 
+    public int tamaSprite;
+
     public TamaData ()
     {
         //This should only be initialized once for the save file

@@ -12,7 +12,6 @@ public abstract class TamaBaseState
         this.name = name;
         this.stateMachine = stateMachine;
     }
-
     public abstract void Enter();
 
     public abstract void Update();

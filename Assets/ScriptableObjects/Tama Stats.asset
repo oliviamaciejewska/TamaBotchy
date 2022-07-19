@@ -18,12 +18,18 @@ MonoBehaviour:
   friendliness:
   - Mean
   - Friendly
+  - Monster
+  - Saint
   hygeine:
   - Messy
   - Clean
+  - Disgusting
   likesDislikes:
   - Pickle
   - Pizza
   - Mayo
   - Cake
   - Beans
+  - Potates
+  - Borgers
+  - Sushi
