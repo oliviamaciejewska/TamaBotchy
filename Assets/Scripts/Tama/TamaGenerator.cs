@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-//Generates new tama with randomized attributes.
 public class TamaGenerator : MonoBehaviour
 {
     public static TamaGenerator instance = null;
@@ -11,12 +10,11 @@ public class TamaGenerator : MonoBehaviour
     [Header("Data")]
     [SerializeField] private TamaStats tamaStats;
 
-    //[SerializeField] private GameObject thisTama;
     private TamaAttributes tamaAttributes;
     private TamaAge tamaAge;
-    public int tamaSpriteIndex;
+    private int tamaSpriteIndex;
 
-    private TamaStateManager tamaStateMachine;
+    private TamaStateMachine tamaStateMachine;
     
     public int amountOfStats = 5;
     public static TamaGenerator Instance { get; private set; }
@@ -28,21 +26,21 @@ public class TamaGenerator : MonoBehaviour
             Debug.LogError("Found more than one TamaGenerator in scene");
         }
         instance = this;
-
-
-        //MakeTama();
     }
 
+    //Generates new tama with randomized attributes when the state changes from egg to adult. Records the current time born at this moment to pass into the tamaAge class
     public void MakeTama()
     {
         tamaAttributes = GetComponent<TamaAttributes>();
-        tamaStateMachine = GetComponent<TamaStateManager>();
+        tamaStateMachine = GetComponent<TamaStateMachine>();
         tamaAge = GetComponent<TamaAge>();
+
         int socIndex = Random.Range(0, tamaStats.sociability.Length);
         int friendIndex = Random.Range(0, tamaStats.friendliness.Length);
         int hygIndex = Random.Range(0, tamaStats.hygeine.Length);
         int likeIndex = Random.Range(0, tamaStats.likesDislikes.Length);
         int disIndex = Random.Range(0, tamaStats.likesDislikes.Length);
+
         while (disIndex == likeIndex)
         {
             disIndex = Random.Range(0, tamaStats.likesDislikes.Length);

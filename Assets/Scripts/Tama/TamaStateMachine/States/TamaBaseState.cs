@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class TamaBaseState
 {
     public string name;
-    protected TamaStateManager stateMachine;
+    protected TamaStateMachine stateMachine;
 
-    public TamaBaseState(string name, TamaStateManager stateMachine)
+    public TamaBaseState(string name, TamaStateMachine stateMachine)
     {
         this.name = name;
         this.stateMachine = stateMachine;

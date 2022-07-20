@@ -10,12 +10,12 @@ public class TamaAge : MonoBehaviour, IDataPersistance
     public DateTime DateTimeTamaBorn { get => dateTimeTamaBorn; set => dateTimeTamaBorn = value; }
     public double currentAgeSeconds;
 
-    // Update is called once per frame
     void Update()
     {
         InvokeRepeating("CalculateTicksFromBirth", 0.0f, 60.0f);
     }
 
+    //Repeatedly calculates the age- this can be adjusted once we change the time and autosave times to not have unncessary iterations
     private void CalculateTicksFromBirth()
     {
         DateTime currentTime = TimeManager.GetCurrentTime();

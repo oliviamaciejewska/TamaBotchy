@@ -5,19 +5,19 @@ using UnityEngine;
 public class TamaHealth : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float _health;
+    [SerializeField] private float health;
     
-    [SerializeField] private float _healthDegenRate = 5.0f; //Rate at which health degenerates in seconds TODO: balance rate
+    [SerializeField] private float healthDegenRate = 5.0f; //Rate at which health degenerates in seconds TODO: balance rate
 
     [SerializeField] private TimeManager timeManager;
 
-    public float Health { get => _health; set => _health = value; }
+    public float Health { get => health; set => health = value; }
 
     // Start is called before the first frame update
     void Start()
     {
-        _health = maxHealth;
-        InvokeRepeating("MakeUnhealthy", 1.0f, _healthDegenRate);
+        health = maxHealth;
+        InvokeRepeating("MakeUnhealthy", 1.0f, healthDegenRate);
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class TamaHealth : MonoBehaviour, IDataPersistance
     //Saving interface functions
     public void LoadData(TamaData data)
     {
-        this.Health = data.health - ((int)(TimeManager.SecondsSinceLastLogin) * (_healthDegenRate));
+        this.Health = data.health - ((int)(TimeManager.SecondsSinceLastLogin) * (healthDegenRate));
 
         Health = Mathf.Clamp(Health, 0, maxHealth);
     }

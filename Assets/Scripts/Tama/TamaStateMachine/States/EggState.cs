@@ -6,7 +6,7 @@ public class EggState : TamaBaseState
 {
     float eggHatchCountdown = 5.0f;
 
-    public EggState(TamaStateManager stateMachine) : base("Egg", stateMachine) { }
+    public EggState(TamaStateMachine stateMachine) : base("Egg", stateMachine) { }
 
     public override void Enter()
     {

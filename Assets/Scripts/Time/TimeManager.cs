@@ -30,13 +30,12 @@ public class TimeManager: MonoBehaviour, IDataPersistance
         }
         instance = this;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         currentTime = DateTime.Now;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateTime();        

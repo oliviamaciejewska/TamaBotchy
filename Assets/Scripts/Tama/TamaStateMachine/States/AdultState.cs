@@ -10,7 +10,7 @@ public class AdultState : TamaBaseState
     [SerializeField] private float _moveTimer = 0;
     [SerializeField] private float moveSpeed = 5.0f;
 
-    public AdultState(TamaStateManager stateMachine) : base("Adult", stateMachine) { }
+    public AdultState(TamaStateMachine stateMachine) : base("Adult", stateMachine) { }
 
 
     public override void Enter()

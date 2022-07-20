@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Holds the data from scriptable objects that allow us to save, load and use said scriptable object stats
 [System.Serializable]
 public class Tama
 {

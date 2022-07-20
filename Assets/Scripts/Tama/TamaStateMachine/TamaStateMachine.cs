@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TamaStateManager : MonoBehaviour, IDataPersistance
+public class TamaStateMachine : MonoBehaviour, IDataPersistance
 {
 
     public TamaBaseState currentState;
@@ -30,16 +30,7 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        tamaGenerator = GetComponent<TamaGenerator>();
-        tamaAge = GetComponent<TamaAge>();
-
-        rb = GetComponent<Rigidbody2D>();
-
-        animator = GetComponent<Animator>();
-
-        eggHatch = GetComponentInChildren<ParticleSystem>();
-
+        GetComponenets();
         currentState = GetInitialState();
 
         currentState.Enter();
@@ -87,14 +78,25 @@ public class TamaStateManager : MonoBehaviour, IDataPersistance
         spriteRenderer.sprite = tamaSprites[spriteNum];
     }
 
-    //Interface method
+    //Function to call for my own neatness sanity
+    void GetComponenets()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        tamaGenerator = GetComponent<TamaGenerator>();
+        tamaAge = GetComponent<TamaAge>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        eggHatch = GetComponentInChildren<ParticleSystem>();
+    }
+
+    //Interface method for save system
     public void LoadData(TamaData data)
     {
         this.currentStateName = data.currentState;
         this.tamaSpriteIndex = data.tamaSprite;
     }
 
-    //Interface method
+    //Interface method for save system
     public void SaveData(TamaData data)
     {
         data.currentState = currentState.ToString();

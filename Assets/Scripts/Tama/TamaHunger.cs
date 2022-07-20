@@ -5,20 +5,20 @@ using UnityEngine;
 public class TamaHunger : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private float maxHunger = 100.0f;
-    [SerializeField] private float _hunger;
-    [SerializeField] private float _hungerDegenRate = 1.0f; //Rate at which hunger decreases in seconds TODO: balance rate
-    [SerializeField] private float _healthDamageByHunger = 20.0f;
+    [SerializeField] private float hunger;
+    [SerializeField] private float hungerDegenRate = 1.0f; //Rate at which hunger decreases in seconds TODO: balance rate
+    [SerializeField] private float healthDamageByHunger = 20.0f;
 
     [SerializeField] private TimeManager timeManager;
 
     private TamaHealth tamaHealth;
 
-    public float Hunger { get => _hunger; set => _hunger = value; }
+    public float Hunger { get => hunger; set => hunger = value; }
 
     void Start()
     {
         Hunger = maxHunger;
-        InvokeRepeating("MakeHungry", 1.0f, _hungerDegenRate);
+        InvokeRepeating("MakeHungry", 1.0f, hungerDegenRate);
         tamaHealth = GetComponent<TamaHealth>();
     }
 
@@ -41,12 +41,12 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
         }
     }
 
-    //Does a bit of extra damage to tama's health
+    //Damage to hunger meter
     private void DamageByHunger()
     {
         if (tamaHealth.Health >= 20)
         {
-            tamaHealth.Health = tamaHealth.Health - _healthDamageByHunger;
+            tamaHealth.Health = tamaHealth.Health - healthDamageByHunger;
         }
         else
         {
@@ -68,7 +68,7 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
     //Saving interface functions
     public void LoadData(TamaData data)
     {
-        this.Hunger = data.hunger - ((int)(TimeManager.SecondsSinceLastLogin) * (_hungerDegenRate));
+        this.Hunger = data.hunger - ((int)(TimeManager.SecondsSinceLastLogin) * (hungerDegenRate));
 
         Hunger = Mathf.Clamp(Hunger, 0, maxHunger);
     }
