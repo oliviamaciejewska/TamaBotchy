@@ -17,7 +17,6 @@ public class TamaAttributes : MonoBehaviour, IDataPersistance
     public string MyLikes { get => myLikes; set => myLikes = value; }
     public string MyDislikes { get => myDislikes; set => myDislikes = value; }
 
-
     public void SetTamaStats(string sociability, string friendliness, string hygeine, string likes, string dislikes)
     {
         MySociability = sociability;

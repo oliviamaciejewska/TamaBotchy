@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TamaStateMachine : MonoBehaviour, IDataPersistance
 {
@@ -19,6 +21,12 @@ public class TamaStateMachine : MonoBehaviour, IDataPersistance
     public Rigidbody2D rb;
     public Animator animator;
     public ParticleSystem eggHatch;
+
+    public GameObject nameTamaMenu;
+    public GameObject inputField;
+    public GameObject textDisplay;
+    public bool isNamed;
+    public string tamaName;
 
     public int tamaSpriteIndex;
 
@@ -78,6 +86,36 @@ public class TamaStateMachine : MonoBehaviour, IDataPersistance
         spriteRenderer.sprite = tamaSprites[spriteNum];
     }
 
+    public void EggHatched()
+    {
+        nameTamaMenu.SetActive(true);
+        StartCoroutine("NameTama");
+    }
+
+    private IEnumerator NameTama()
+    {
+
+        yield return SubmitName();
+    }
+
+    private IEnumerator SubmitName()
+    {
+        while(!isNamed)
+        {
+            tamaName = inputField.GetComponent<Text>().text;
+            textDisplay.GetComponent<Text>().text = tamaName;
+            yield return null;
+        }
+    }
+
+    public void SubmitNameButton()
+    {
+        tamaAge.tamaName = tamaName;
+        nameTamaMenu.SetActive(false);
+        tamaGenerator.MakeTama();
+        isNamed = true;
+    }
+
     //Function to call for my own neatness sanity
     void GetComponenets()
     {
@@ -103,10 +141,10 @@ public class TamaStateMachine : MonoBehaviour, IDataPersistance
         data.tamaSprite = this.tamaSpriteIndex;
     }
 
-    private void OnGUI()
-    {
-        string content = currentState != null ? currentState.name : "(no current state";
-        GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
-    }
+    //private void OnGUI()
+    //{
+    //    string content = currentState != null ? currentState.name : "(no current state";
+    //    //GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+    //}
 
 }

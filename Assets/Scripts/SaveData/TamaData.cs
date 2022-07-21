@@ -25,6 +25,8 @@ public class TamaData
 
     public int tamaSprite;
 
+    public string tamaName;
+
     public TamaData ()
     {
         //This should only be initialized once for the save file

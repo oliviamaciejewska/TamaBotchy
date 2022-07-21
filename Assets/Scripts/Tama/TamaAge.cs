@@ -10,6 +10,8 @@ public class TamaAge : MonoBehaviour, IDataPersistance
     public DateTime DateTimeTamaBorn { get => dateTimeTamaBorn; set => dateTimeTamaBorn = value; }
     public double currentAgeSeconds;
 
+    public string tamaName;
+
     void Update()
     {
         InvokeRepeating("CalculateTicksFromBirth", 0.0f, 60.0f);
@@ -27,6 +29,7 @@ public class TamaAge : MonoBehaviour, IDataPersistance
     public void LoadData(TamaData data)
     {
         this.dateTimeTamaBorn = DateTime.Parse(data.timeTamaBorn);
+        this.tamaName = data.tamaName;
         CalculateTicksFromBirth();
     }
 
@@ -34,5 +37,6 @@ public class TamaAge : MonoBehaviour, IDataPersistance
     public void SaveData(TamaData data)
     {
         data.timeTamaBorn = this.dateTimeTamaBorn.ToString();
+        data.tamaName = this.tamaName;
     }
 }

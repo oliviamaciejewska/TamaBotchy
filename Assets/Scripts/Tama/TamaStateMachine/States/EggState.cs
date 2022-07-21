@@ -34,7 +34,7 @@ public class EggState : TamaBaseState
     public override void Exit()
     {
         stateMachine.eggHatch.Play();
-        stateMachine.tamaGenerator.MakeTama();
+        stateMachine.EggHatched();
     }
 
     //IEnumerator Hatch()
