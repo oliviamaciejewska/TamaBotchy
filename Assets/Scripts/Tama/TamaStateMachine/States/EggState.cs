@@ -23,7 +23,7 @@ public class EggState : TamaBaseState
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.adultState);
+            stateMachine.EggHatched();
         }
     }
 
@@ -34,7 +34,6 @@ public class EggState : TamaBaseState
     public override void Exit()
     {
         stateMachine.eggHatch.Play();
-        stateMachine.EggHatched();
     }
 
     //IEnumerator Hatch()

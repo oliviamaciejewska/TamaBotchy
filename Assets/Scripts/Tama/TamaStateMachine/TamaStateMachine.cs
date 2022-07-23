@@ -102,17 +102,18 @@ public class TamaStateMachine : MonoBehaviour, IDataPersistance
     {
         while(!isNamed)
         {
-            tamaName = inputField.GetComponent<Text>().text;
-            textDisplay.GetComponent<Text>().text = tamaName;
+            tamaName = inputField.GetComponent<TMP_InputField>().text;
+            //textDisplay.GetComponent<TMP_InputField>().text = tamaName;
             yield return null;
         }
+        this.ChangeState(this.adultState);
     }
 
     public void SubmitNameButton()
     {
         tamaAge.tamaName = tamaName;
-        nameTamaMenu.SetActive(false);
         tamaGenerator.MakeTama();
+        Destroy(nameTamaMenu);
         isNamed = true;
     }
 
