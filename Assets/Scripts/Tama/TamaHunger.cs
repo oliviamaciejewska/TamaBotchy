@@ -17,7 +17,6 @@ public class TamaHunger : MonoBehaviour, IDataPersistance
 
     void Start()
     {
-        Hunger = maxHunger;
         InvokeRepeating("MakeHungry", 1.0f, hungerDegenRate);
         tamaHealth = GetComponent<TamaHealth>();
     }

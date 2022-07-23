@@ -29,6 +29,10 @@ public class TamaData
 
     public TamaData ()
     {
+        this.health = 100;
+        this.hunger = 100;
+        this.lastTime = "";
+
         //This should only be initialized once for the save file
     }
 

@@ -16,7 +16,6 @@ public class TamaHealth : MonoBehaviour, IDataPersistance
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
         InvokeRepeating("MakeUnhealthy", 1.0f, healthDegenRate);
     }
 

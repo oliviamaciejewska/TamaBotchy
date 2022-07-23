@@ -50,6 +50,10 @@ public class DataPersistanceManager : MonoBehaviour
     public void NewGame()
     {
         this.tamaData = new TamaData();
+        foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
+        {
+            dataPersistanceObj.LoadData(tamaData);
+        }
     }
 
     public void LoadGame()

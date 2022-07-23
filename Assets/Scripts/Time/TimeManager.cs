@@ -62,11 +62,19 @@ public class TimeManager: MonoBehaviour, IDataPersistance
 
     public void LoadData(TamaData data)
     {
-        this.LastTimeRecorded = DateTime.Parse(data.lastTime);
-
         timeNow = GetCurrentTime();
 
-        GetSecondsSinceLastLogin();
+        if (data.lastTime == "")
+        {
+            this.LastTimeRecorded = timeNow;
+        }
+
+        else
+        {
+            this.LastTimeRecorded = DateTime.Parse(data.lastTime);
+
+            GetSecondsSinceLastLogin();
+        }
     }
 
     public void SaveData(TamaData data)

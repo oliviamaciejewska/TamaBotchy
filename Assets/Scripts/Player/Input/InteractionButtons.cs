@@ -8,8 +8,8 @@ public class InteractionButtons : MonoBehaviour
     private TamaHunger tamaHunger;
     private TamaHealth tamaHealth;
 
-    [SerializeField] private float feedAmount;
-    [SerializeField] private float healAmount;
+    [SerializeField] private float feedAmount = 20;
+    [SerializeField] private float healAmount = 20;
 
 
     void Start()
